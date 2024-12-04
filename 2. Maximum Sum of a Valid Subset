@@ -1,0 +1,31 @@
+# Condition:
+
+# Given N integers, you have to pick a valid subset with the largest sum from these integers.
+
+# A valid subset is a subset in which no two adjacent elements are picked.
+
+# Solution:
+# cook your dish here
+t = int(input())
+
+for _ in range(t):
+    n = int(input())
+    A = list(map(int, input().split()))
+    
+    
+    if n == 0:
+        print(0)
+        continue
+    
+    if n == 1:
+        print(max(0, A[0]))
+        continue
+    
+    dp = [0] * n
+    dp[0] = max(0, A[0])
+    dp[1] = max(dp[0], A[1])
+    
+    for i in range(2, n):
+        dp[i] = max(dp[i-1], A[i] + dp[i-2])
+        
+    print(dp[n-1])
