@@ -1,0 +1,27 @@
+# cook your dish here
+def max_sum_subarray(arr):
+    max_ending_here = arr[0]
+    max_so_far = arr[0]
+    
+    for x in arr[1:]:
+        max_ending_here = max(x, max_ending_here + x)
+        max_so_far = max(max_so_far, max_ending_here)
+    
+    return max_so_far
+    
+t = int(input())
+for _ in range(t):
+    N = int(input())
+    A = list(map(int, input().split()))
+    T = list(map(int, input().split()))
+    
+    V0, V1 = [], []
+    
+    for i in range(N):
+        if T[i] == 0:
+            V0.append(A[i])
+        else:
+            V1.append(A[i])
+    
+    max_happiness_0 = max_sum_subarray(V0) if V0 else float('-inf')
+    max_happiness_1 = max_sum_subarray(V1) if V1 else float('-inf')
