@@ -1,0 +1,21 @@
+def evaluate_rpn(expr):
+    stack = []
+    for c in expr:
+        if c.isdigit():
+            stack.append(int(c))
+        else:
+            val2 = stack.pop()
+            val1 = stack.pop()
+            if c == '+':
+                stack.append(val1 + val2)
+            elif c == '-':
+                stack.append(val1 - val2)
+            elif c == '*':
+                stack.append(val1 * val2)
+    return stack[-1]
+
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    S = input()
+    print(evaluate_rpn(S))
